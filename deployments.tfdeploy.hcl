@@ -17,7 +17,7 @@ locals {
       "197831068840",
       "620992073655",
       "927911426753",
-      "887703211062"
+      # "887703211062"
     ]
   }
 }
@@ -34,17 +34,17 @@ deployment "core_ou" {
   }
 }
 
-# deployment "core_prod" {
-#   inputs = {
-#     region         = local.iam_role.region
-#     accounts       = local.ou.prod
-#     identity_token = identity_token.aws.jwt
-#     role_name      = "HCPTerraform-Role-StackSet"
-#     default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
-#     enable_security_scanner = true
-#     enable_finops_scanner   = false
-#   }
-# }
+deployment "core_prod" {
+  inputs = {
+    region         = local.iam_role.region
+    accounts       = local.ou.prod
+    identity_token = identity_token.aws.jwt
+    role_name      = "HCPTerraform-Role-StackSet"
+    default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
+    enable_security_scanner = true
+    enable_finops_scanner   = false
+  }
+}
 
 # orchestrate "auto_approve" "core_ou" {
 #     check {
