@@ -22,17 +22,17 @@ locals {
   }
 }
 
-# deployment "core_ou" {
-#   inputs = {
-#     region         = local.iam_role.region
-#     accounts       = local.ou.core
-#     identity_token = identity_token.aws.jwt
-#     role_name      = "HCPTerraform-Role-StackSet"
-#     default_tags   = { stacks-preview-example = "example1-infrastructure-ou" }
-#     enable_security_scanner = true
-#     enable_finops_scanner   = true
-#   }
-# }
+deployment "core_ou" {
+  inputs = {
+    region         = local.iam_role.region
+    accounts       = local.ou.core
+    identity_token = identity_token.aws.jwt
+    role_name      = "HCPTerraform-Role-StackSet"
+    default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
+    enable_security_scanner = true
+    enable_finops_scanner   = true
+  }
+}
 
 # deployment "core_prod" {
 #   inputs = {
@@ -40,7 +40,7 @@ locals {
 #     accounts       = local.ou.prod
 #     identity_token = identity_token.aws.jwt
 #     role_name      = "HCPTerraform-Role-StackSet"
-#     default_tags   = { stacks-preview-example = "example1-infrastructure-ou" }
+#     default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
 #     enable_security_scanner = true
 #     enable_finops_scanner   = false
 #   }
