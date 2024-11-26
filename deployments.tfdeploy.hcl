@@ -17,7 +17,7 @@ locals {
       "197831068840",
       "620992073655",
       "927911426753",
-      "887703211062"
+      # "887703211062"
     ]
   }
 }
@@ -28,7 +28,7 @@ deployment "core_ou" {
     accounts       = local.ou.core
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
-    default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
+    default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
     enable_security_scanner = true
     enable_finops_scanner   = true
   }
@@ -40,7 +40,7 @@ deployment "core_prod" {
     accounts       = local.ou.prod
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
-    default_tags   = { stacks-preview-example = "dop206-example-infra-1" }
+    default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
     enable_security_scanner = true
     enable_finops_scanner   = false
   }
