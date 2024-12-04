@@ -33,7 +33,7 @@ locals {
 #   }
 # }
 
-# deployment "core_prod" {
+# deployment "prod_ou" {
 #   inputs = {
 #     region         = local.iam_role.region
 #     accounts       = local.ou.prod
