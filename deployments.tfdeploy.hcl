@@ -8,7 +8,7 @@ locals {
     region = "us-east-1"
   }
   ou = {
-    core = [
+    dev = [
       "589140316372",
       "031374037584",
       "830830285209"
@@ -17,24 +17,24 @@ locals {
       "197831068840",
       "620992073655",
       "927911426753",
-      # "887703211062"
+      "887703211062"
     ]
   }
 }
 
-deployment "core_ou" {
+deployment "dev_ou" {
   inputs = {
     region         = local.iam_role.region
-    accounts       = local.ou.core
+    accounts       = local.ou.dev
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
     enable_security_scanner = true
-    enable_finops_scanner   = true
+    enable_finops_scanner   = false
   }
 }
 
-deployment "core_prod" {
+deployment "prod_ou" {
   inputs = {
     region         = local.iam_role.region
     accounts       = local.ou.prod
@@ -42,7 +42,7 @@ deployment "core_prod" {
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
     enable_security_scanner = true
-    enable_finops_scanner   = false
+    enable_finops_scanner   = true
   }
 }
 
