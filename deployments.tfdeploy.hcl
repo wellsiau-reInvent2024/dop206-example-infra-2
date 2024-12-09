@@ -17,7 +17,7 @@ store "varset" "accounts" {
 deployment "dev_ou" {
   inputs = {
     region         = local.iam_role.region
-    accounts       = store.varset.accounts.dev
+    accounts       = jsondecode(store.varset.accounts.dev)
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
@@ -29,7 +29,7 @@ deployment "dev_ou" {
 deployment "prod_ou" {
   inputs = {
     region         = local.iam_role.region
-    accounts       = store.varset.accounts.prod
+    accounts       = jsondecode(store.varset.accounts.prod)
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
