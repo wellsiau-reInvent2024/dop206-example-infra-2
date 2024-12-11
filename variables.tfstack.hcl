@@ -2,6 +2,7 @@
 variable "accounts" {
   description = "list of accounts as target for deployment"
   type = set(string)
+  ephemeral = true
 }
 
 # Target Role name for AWS provider

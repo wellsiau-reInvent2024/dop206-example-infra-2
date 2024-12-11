@@ -7,25 +7,17 @@ locals {
   iam_role = {
     region = "us-east-1"
   }
-  ou = {
-    dev = [
-      "589140316372",
-      "031374037584",
-      "830830285209"
-      ],
-    prod = [
-      "197831068840",
-      "620992073655",
-      "927911426753",
-      "887703211062"
-    ]
-  }
+}
+
+store "varset" "accounts" {
+  id       = "varset-rbeeCsRRRPWN5SQU" #stacks_infra2_ou
+  category = "env"
 }
 
 deployment "dev_ou" {
   inputs = {
     region         = local.iam_role.region
-    accounts       = local.ou.dev
+    accounts       = store.varset.accounts.dev
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
@@ -37,7 +29,7 @@ deployment "dev_ou" {
 deployment "prod_ou" {
   inputs = {
     region         = local.iam_role.region
-    accounts       = local.ou.prod
+    accounts       = store.varset.accounts.prod
     identity_token = identity_token.aws.jwt
     role_name      = "HCPTerraform-Role-StackSet"
     default_tags   = { stacks-preview-example = "dop206-example-infra-1-new" }
